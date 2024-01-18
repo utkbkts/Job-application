@@ -14,16 +14,19 @@ const DetailById = () => {
   const { id } = useParams();
   const router = useRouter();
   const { getDetail, detailpost } = useGetDetail();
-  useEffect(() => {
-    // Tarayıcı ortamında mı kontrol et
-    if (typeof window !== "undefined") {
-      const localuser = localStorage.getItem("user-Admin");
+  const [localStora, setLocalStora] = useState(null);
 
-      if (!localuser) {
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const storedLocalStora = localStorage.getItem("user-Admin");
+
+      if (!storedLocalStora) {
         router.push("/");
+      } else {
+        setLocalStora(storedLocalStora);
       }
     }
-  }, []);
+  }, [router]);
   const { deletePostGet } = useDeletePost();
   useEffect(() => {
     getDetail(id);
@@ -71,7 +74,7 @@ const DetailById = () => {
                   Remote:{detailpost.remote ? "true" : "false"}
                 </span>
               </div>
-              {localuser && (
+              {localStora && (
                 <div>
                   {applicationStatus ? (
                     <Button

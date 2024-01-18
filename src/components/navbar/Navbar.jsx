@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { Button } from "@mui/material";
 import { GiPayMoney } from "react-icons/gi";
@@ -11,15 +11,19 @@ import { useFormSearchContext } from "@/context/SearchContext";
 const Navbar = () => {
   const { LoginUser } = useFormSearchContext();
   const router = useRouter();
+  const [localStora, setLocalStora] = useState(null);
+
   useEffect(() => {
     if (typeof window !== "undefined") {
-      const localStora = localStorage.getItem("user-Admin");
+      const storedLocalStora = localStorage.getItem("user-Admin");
 
-      if (!localStora) {
+      if (!storedLocalStora) {
         router.push("/");
+      } else {
+        setLocalStora(storedLocalStora);
       }
     }
-  }, []);
+  }, [router]);
   const handleLogout = async () => {
     try {
       await signOut(auth);
@@ -60,7 +64,7 @@ const Navbar = () => {
               </Link>
             </>
           )}
-          {getLocal &&(
+          {localStora &&(
             <>
               <span>Welcome, {LoginUser?.displayName}</span>
               <Link href={"/addcreate"} passHref>
@@ -73,7 +77,7 @@ const Navbar = () => {
               </Button>
             </>
           )}
-          {LoginUser && !getLocal &&  <>
+          {LoginUser && !localStora &&  <>
               <span>Welcome, {LoginUser?.displayName}</span>
               <Button onClick={handleLogout} variant="text" color="warning">
                 Logout

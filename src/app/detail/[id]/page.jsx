@@ -19,12 +19,7 @@ const DetailById = () => {
   useEffect(() => {
     if (typeof window !== "undefined") {
       const storedLocalStora = localStorage.getItem("user-Admin");
-
-      if (!storedLocalStora) {
-        router.push("/");
-      } else {
         setLocalStora(storedLocalStora);
-      }
     }
   }, [router]);
   const { deletePostGet } = useDeletePost();

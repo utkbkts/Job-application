@@ -18,7 +18,7 @@ const DetailById = () => {
 
   useEffect(() => {
     if (typeof window !== "undefined") {
-      const storedLocalStora = localStorage.getItem("user-Admin");
+      const storedLocalStora = localStorage.getItem("user-info");
         setLocalStora(storedLocalStora);
     }
   }, [router]);

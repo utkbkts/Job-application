@@ -103,7 +103,7 @@ const RegisterEmployer = () => {
             </Button>
             <span className="text-center">
               Do you have an account ?
-              <span onClick={() => router.push("/login-employer")}>Log in</span>
+              <span className="text-blue-300 underline cursor-pointer" onClick={() => router.push("/login-employer")}>Log in</span>
             </span>
           </FormGroup>
         </form>

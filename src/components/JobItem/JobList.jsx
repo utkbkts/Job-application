@@ -3,7 +3,6 @@
 import Price from "format-price";
 import moment from "moment";
 import Image from "next/image";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React from "react";
 

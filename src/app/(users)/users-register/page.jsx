@@ -7,6 +7,7 @@ import { FormControl, FormGroup, Input, InputLabel } from "@mui/material";
 import Button from "@mui/material/Button";
 import { Link as MUILink } from '@mui/material';
 import useSignup from "@/hook/useSignupUsers";
+import { useRouter } from "next/navigation";
 const validationSchema = yup
   .object({
     name: yup.string().required("Missing Name"),
@@ -17,6 +18,7 @@ const validationSchema = yup
 
 const Register = () => {
   const {usecreateSignup}=useSignup()
+  const router = useRouter()
   const {
     register,
     handleSubmit,
@@ -70,7 +72,7 @@ const Register = () => {
               {errors.name && <span className="text-red-400">{errors?.password?.message}</span>}
             </FormControl>
            <Button type="submit" variant="contained" className="bg-blue-700 text-whit">Submit</Button>
-            <span className="text-center">Do you have an account ?<MUILink href="/users-login">Log in</MUILink></span>
+            <span className="text-center">Do you have an account ?<span className="text-blue-300 underline cursor-pointer" onClick={() => router.push("/users-login")}>Log in</span></span>
           </FormGroup>
         </form>
       </div>

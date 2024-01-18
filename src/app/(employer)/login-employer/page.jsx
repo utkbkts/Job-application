@@ -89,7 +89,7 @@ const LoginEmployer = () => {
             <span className="text-center">
               {" "}
               Don't you have an account? ?
-              <span onClick={() => router.push("/register-employer")}>Sign Up</span>
+              <span className="text-blue-300 underline cursor-pointer" onClick={() => router.push("/register-employer")}>Sign Up</span>
             </span>
           </FormGroup>
         </form>

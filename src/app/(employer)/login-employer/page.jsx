@@ -8,6 +8,7 @@ import Button from "@mui/material/Button";
 import { Link as MUILink } from "@mui/material";
 import Image from "next/image";
 import useEmployerLogin from "@/hook/useEmployerLogin";
+import { useRouter } from "next/navigation";
 const validationSchema = yup
   .object({
     name: yup.string().required("Missing Name"),
@@ -18,7 +19,7 @@ const validationSchema = yup
 
 const LoginEmployer = () => {
   const {loginemployer}=useEmployerLogin()
-
+  const router = useRouter()
   const {
     register,
     handleSubmit,
@@ -88,7 +89,7 @@ const LoginEmployer = () => {
             <span className="text-center">
               {" "}
               Don't you have an account? ?
-              <MUILink href="/register-employer">Sign Up</MUILink>
+              <span onClick={() => router.push("/register-employer")}>Sign Up</span>
             </span>
           </FormGroup>
         </form>

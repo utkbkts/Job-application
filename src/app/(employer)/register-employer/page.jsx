@@ -5,9 +5,9 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { FormControl, FormGroup, Input, InputLabel } from "@mui/material";
 import Button from "@mui/material/Button";
-import { Link as MUILink } from '@mui/material';
-import Image from "next/image";
+import { Link as MUILink } from "@mui/material";
 import useEmployerSingup from "@/hook/useEmployerSignup";
+import { useRouter } from "next/navigation";
 const validationSchema = yup
   .object({
     name: yup.string().required("Missing Name"),
@@ -18,7 +18,8 @@ const validationSchema = yup
   .required();
 
 const RegisterEmployer = () => {
-  const {EmployerSignup}=useEmployerSingup()
+  const router = useRouter();
+  const { EmployerSignup } = useEmployerSingup();
   const {
     register,
     handleSubmit,
@@ -33,7 +34,7 @@ const RegisterEmployer = () => {
     },
   });
   const onsubmit = (data) => {
-    EmployerSignup(data)
+    EmployerSignup(data);
   };
   return (
     <div className="flex items-center justify-center flex-col">
@@ -49,7 +50,9 @@ const RegisterEmployer = () => {
                 type="text"
                 name="name"
               />
-              {errors.name && <span className="text-red-400">{errors?.name?.message}</span>}
+              {errors.name && (
+                <span className="text-red-400">{errors?.name?.message}</span>
+              )}
             </FormControl>
             <FormControl>
               <InputLabel>Company Name</InputLabel>
@@ -59,7 +62,11 @@ const RegisterEmployer = () => {
                 type="text"
                 name="companyname"
               />
-              {errors.name && <span className="text-red-400">{errors?.companyname?.message}</span>}
+              {errors.name && (
+                <span className="text-red-400">
+                  {errors?.companyname?.message}
+                </span>
+              )}
             </FormControl>
             <FormControl>
               <InputLabel>Email</InputLabel>
@@ -69,7 +76,9 @@ const RegisterEmployer = () => {
                 type="email"
                 name="email"
               />
-              {errors.name && <span className="text-red-400">{errors?.email?.message}</span>}
+              {errors.name && (
+                <span className="text-red-400">{errors?.email?.message}</span>
+              )}
             </FormControl>
             <FormControl>
               <InputLabel>Password</InputLabel>
@@ -79,15 +88,27 @@ const RegisterEmployer = () => {
                 type="password"
                 name="password"
               />
-              {errors.name && <span className="text-red-400">{errors?.password?.message}</span>}
+              {errors.name && (
+                <span className="text-red-400">
+                  {errors?.password?.message}
+                </span>
+              )}
             </FormControl>
-           <Button type="submit" variant="contained" className="bg-blue-700 text-whit">Submit</Button>
-            <span className="text-center">Do you have an account ?<MUILink href="/login-employer">Log in</MUILink></span>
+            <Button
+              type="submit"
+              variant="contained"
+              className="bg-blue-700 text-whit"
+            >
+              Submit
+            </Button>
+            <span className="text-center">
+              Do you have an account ?
+              <span onClick={() => router.push("/login-employer")}>Log in</span>
+            </span>
           </FormGroup>
         </form>
       </div>
     </div>
   );
 };
-
 export default RegisterEmployer;

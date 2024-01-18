@@ -14,7 +14,16 @@ const DetailById = () => {
   const { id } = useParams();
   const router = useRouter();
   const { getDetail, detailpost } = useGetDetail();
-  const localuser = localStorage.getItem("user-info");
+  useEffect(() => {
+    // Tarayıcı ortamında mı kontrol et
+    if (typeof window !== "undefined") {
+      const localuser = localStorage.getItem("user-Admin");
+
+      if (!localuser) {
+        router.push("/");
+      }
+    }
+  }, []);
   const { deletePostGet } = useDeletePost();
   useEffect(() => {
     getDetail(id);

@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 import Link from "next/link";
 import { Button } from "@mui/material";
 import { GiPayMoney } from "react-icons/gi";
@@ -11,7 +11,15 @@ import { useFormSearchContext } from "@/context/SearchContext";
 const Navbar = () => {
   const { LoginUser } = useFormSearchContext();
   const router = useRouter();
-  const getLocal = localStorage.getItem("user-Admin")
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const localStora = localStorage.getItem("user-Admin");
+
+      if (!localStora) {
+        router.push("/");
+      }
+    }
+  }, []);
   const handleLogout = async () => {
     try {
       await signOut(auth);

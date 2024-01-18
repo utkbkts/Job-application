@@ -1,5 +1,5 @@
 "use client";
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import {
@@ -27,10 +27,16 @@ const AddCreate = () => {
   const [active, setactive] = useState(false);
   const [number, setNumber] = useState(0);
   const router = useRouter()
-  const localstora = localStorage.getItem("user-Admin")
-  if(!localstora){
-    return router.push("/")
-  }
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const localstora = localStorage.getItem("user-Admin");
+
+      if (!localstora) {
+        router.push("/");
+      }
+    }
+  }, []);
+ 
   const ref = useRef();
   const {
     register,

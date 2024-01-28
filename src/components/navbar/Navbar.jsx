@@ -43,7 +43,7 @@ const Navbar = () => {
           <Button>
             <Link
               href={"/"}
-              className="text-3xl font-bold tracking-wide text-black"
+              className="md:text-3xl text-[16px] font-bold md:tracking-wide text-black"
             >
               Job Application
             </Link>

@@ -64,7 +64,7 @@ const Home = () => {
         <>Loading...</>
       ) : (
         <div className="md:flex-row flex-col flex gap-4">
-          <div className="border border-black p-2 md:w-[200px] w-full max-h-[400px] sticky top-0">
+          <div className="border border-black p-2 md:w-[200px] w-full max-h-[400px] md:sticky static top-0">
             <Sidebar onFilter={handleFilter} HandleClear={HandleClear} />
           </div>
           <div className="flex flex-col gap-2">
